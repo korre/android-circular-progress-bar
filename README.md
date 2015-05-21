@@ -3,7 +3,7 @@
 
 Simple single android view component that can be used to showing a round progress bar. 
 It can be customized with size, stroke size, colors and text etc. See image for some example.
-When changing the progress the change will be animated and a DeccelerateInterpolator is used to make it look nice.
+**Progress change will be animated**.
 
 ##How to use
 Add it to your XML like this (or programmatically by code).
