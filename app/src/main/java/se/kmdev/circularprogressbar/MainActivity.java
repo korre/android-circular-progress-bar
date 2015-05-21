@@ -10,7 +10,10 @@ import android.widget.Button;
 
 public class MainActivity extends ActionBarActivity {
 
-    CircularProgressBar circularProgressBar;
+    CircularProgressBar circularProgressBar1;
+    CircularProgressBar circularProgressBar2;
+    CircularProgressBar circularProgressBar3;
+
     Button updateProgressButton;
 
     @Override
@@ -18,15 +21,30 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        circularProgressBar = (CircularProgressBar) findViewById(R.id.circularProgress);
-        circularProgressBar.setProgressColor(getResources().getColor(R.color.link_text_material_light));
+        circularProgressBar1 = (CircularProgressBar) findViewById(R.id.circularProgress);
+        circularProgressBar2 = (CircularProgressBar) findViewById(R.id.circularProgress2);
+        circularProgressBar3 = (CircularProgressBar) findViewById(R.id.circularProgress3);
+
+        circularProgressBar1.setProgressColor(getResources().getColor(R.color.link_text_material_light));
+        circularProgressBar1.setProgressWidth(30);
+
+        circularProgressBar2.setProgressColor(getResources().getColor(R.color.link_text_material_dark));
+        circularProgressBar2.setProgressWidth(20);
+        circularProgressBar2.setTextColor(getResources().getColor(R.color.button_material_dark));
+        circularProgressBar2.useRoundedCorners(false);
+
+        circularProgressBar3.setProgressColor(getResources().getColor(R.color.primary_text_disabled_material_light));
+        circularProgressBar3.setProgressWidth(15);
+        circularProgressBar3.showProgressText(false);
 
         updateProgressButton= (Button) findViewById(R.id.updateProgressButton);
         updateProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int newProgress = (int) (Math.random() * 100);
-                circularProgressBar.setProgress(newProgress);
+                circularProgressBar1.setProgress(newProgress);
+                circularProgressBar2.setProgress(newProgress);
+                circularProgressBar3.setProgress(newProgress);
             }
         });
     }

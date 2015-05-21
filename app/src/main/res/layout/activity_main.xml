@@ -11,11 +11,31 @@
         android:layout_height="180dp"
         android:layout_centerHorizontal="true"/>
 
-    <Button
-        android:id="@+id/updateProgressButton"
+    <LinearLayout
+        android:id="@+id/wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/circularProgress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+
+        <se.kmdev.circularprogressbar.CircularProgressBar
+            android:id="@+id/circularProgress2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <se.kmdev.circularprogressbar.CircularProgressBar
+            android:id="@+id/circularProgress3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_below="@id/wrapper"
+        android:id="@+id/updateProgressButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Press me!"/>
