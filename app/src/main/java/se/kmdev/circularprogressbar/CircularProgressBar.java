@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
 /**
- * Created by Kristoffer on 15-05-21.
+ * Simple single android view component that can be used to showing a round progress bar.
+ * It can be customized with size, stroke size, colors and text etc.
+ * Progress change will be animated.
+ * Created by Kristoffer, http://kmdev.se
  */
 public class CircularProgressBar extends View {
 
@@ -21,11 +24,11 @@ public class CircularProgressBar extends View {
     private final float mStartAngle = -90;      // Always start from top (default is: "3 o'clock on a watch.")
     private float mSweepAngle = 0;              // How long to sweep from mStartAngle
     private float mMaxSweepAngle = 360;         // Max degrees to sweep = full circle
-    private int mStrokeWidth = 20;              // Width of outline/stroke
+    private int mStrokeWidth = 20;              // Width of outline
     private int mAnimationDuration = 400;       // Animation duration for progress change
     private int mMaxProgress = 100;             // Max progress to use
     private boolean mDrawText = true;           // Set to true if progress text should be drawn
-    private boolean mRoundedCorners = true;     // Set to true if progress text should be drawn
+    private boolean mRoundedCorners = true;     // Set to true if rounded corners should be applied to outline ends
     private int mProgressColor = Color.BLACK;   // Outline color
     private int mTextColor = Color.BLACK;       // Progress text color
 
