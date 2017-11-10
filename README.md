@@ -1,5 +1,5 @@
 # Circular Progress Bar
-<img src="http://kmdev.se/img/gh-cpb.png" width="300" />
+<img src="http://www.happanero.se/wp-content/uploads/2017/11/gh-cpb.png" width="300" />
 
 Simple single android view component that can be used to showing a round progress bar. 
 It can be customized with size, stroke size, colors and text etc. See image for some example.
