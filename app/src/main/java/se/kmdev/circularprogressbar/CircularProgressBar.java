@@ -65,9 +65,9 @@ public class CircularProgressBar extends View {
 
     private void drawOutlineArc(Canvas canvas) {
 
-        final int diameter = Math.min(mViewWidth, mViewHeight) - (mStrokeWidth * 2);
-
-        final RectF outerOval = new RectF(mStrokeWidth, mStrokeWidth, diameter, diameter);
+        final int diameter = Math.min(mViewWidth, mViewHeight);
+        final float pad = mStrokeWidth / 2.0;
+        final RectF outerOval = new RectF(pad, pad, diameter - pad, diameter - pad);
 
         mPaint.setColor(mProgressColor);
         mPaint.setStrokeWidth(mStrokeWidth);
