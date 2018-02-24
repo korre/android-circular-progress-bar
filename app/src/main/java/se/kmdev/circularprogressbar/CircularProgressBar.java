@@ -21,7 +21,7 @@ public class CircularProgressBar extends View {
     private int mViewWidth;
     private int mViewHeight;
 
-    private final float mStartAngle = -90;      // Always start from top (default is: "3 o'clock on a watch.")
+    private float mStartAngle = -90;            // Start from top (default is: "3 o'clock on a watch.")
     private float mSweepAngle = 0;              // How long to sweep from mStartAngle
     private float mMaxSweepAngle = 360;         // Max degrees to sweep = full circle
     private int mStrokeWidth = 20;              // Width of outline
@@ -30,9 +30,13 @@ public class CircularProgressBar extends View {
     private boolean mDrawText = true;           // Set to true if progress text should be drawn
     private boolean mRoundedCorners = true;     // Set to true if rounded corners should be applied to outline ends
     private int mProgressColor = Color.BLACK;   // Outline color
+    private int mBackgroundColor = Color.BLACK; // Background color
     private int mTextColor = Color.BLACK;       // Progress text color
+    private boolean mClockWise = true;
+    private boolean hasBackground = false;
 
     private final Paint mPaint;                 // Allocate paint outside onDraw to avoid unnecessary object creation
+
 
     public CircularProgressBar(Context context) {
         this(context, null);
@@ -50,7 +54,7 @@ public class CircularProgressBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        initMeasurments();
+        initMeasurements();
         drawOutlineArc(canvas);
 
         if (mDrawText) {
@@ -58,7 +62,7 @@ public class CircularProgressBar extends View {
         }
     }
 
-    private void initMeasurments() {
+    private void initMeasurements() {
         mViewWidth = getWidth();
         mViewHeight = getHeight();
     }
@@ -66,15 +70,20 @@ public class CircularProgressBar extends View {
     private void drawOutlineArc(Canvas canvas) {
 
         final int diameter = Math.min(mViewWidth, mViewHeight);
-        final float pad = mStrokeWidth / 2.0;
+        final float pad = (float) (mStrokeWidth / 2.0);
         final RectF outerOval = new RectF(pad, pad, diameter - pad, diameter - pad);
 
-        mPaint.setColor(mProgressColor);
         mPaint.setStrokeWidth(mStrokeWidth);
         mPaint.setAntiAlias(true);
-        mPaint.setStrokeCap(mRoundedCorners ? Paint.Cap.ROUND : Paint.Cap.BUTT);
         mPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawArc(outerOval, mStartAngle, mSweepAngle, false, mPaint);
+        if(hasBackground) {
+            mPaint.setColor(mBackgroundColor);
+            mPaint.setStrokeCap(Paint.Cap.BUTT);
+            canvas.drawArc(outerOval, 0, mMaxSweepAngle, false, mPaint);
+        }
+        mPaint.setStrokeCap(mRoundedCorners ? Paint.Cap.ROUND : Paint.Cap.BUTT);
+        mPaint.setColor(mProgressColor);
+        canvas.drawArc(outerOval, mStartAngle, mClockWise ? mSweepAngle : -mSweepAngle, false, mPaint);
     }
 
     private void drawText(Canvas canvas) {
@@ -85,7 +94,7 @@ public class CircularProgressBar extends View {
 
         // Center text
         int xPos = (canvas.getWidth() / 2);
-        int yPos = (int) ((canvas.getHeight() / 2) - ((mPaint.descent() + mPaint.ascent()) / 2)) ;
+        int yPos = (int) ((canvas.getHeight() / 2) - ((mPaint.descent() + mPaint.ascent()) / 2));
 
         canvas.drawText(calcProgressFromSweepAngle(mSweepAngle) + "%", xPos, yPos, mPaint);
     }
@@ -100,6 +109,7 @@ public class CircularProgressBar extends View {
 
     /**
      * Set progress of the circular progress bar.
+     *
      * @param progress progress between 0 and 100.
      */
     public void setProgress(int progress) {
@@ -139,10 +149,44 @@ public class CircularProgressBar extends View {
     /**
      * Toggle this if you don't want rounded corners on progress bar.
      * Default is true.
+     *
      * @param roundedCorners true if you want rounded corners of false otherwise.
      */
     public void useRoundedCorners(boolean roundedCorners) {
         mRoundedCorners = roundedCorners;
         invalidate();
     }
+
+    public float getStartAngle() {
+        return mStartAngle;
+    }
+
+    public void setStartAnle(float angle) {
+        mStartAngle = angle;
+    }
+
+    public boolean isClockWise() {
+        return mClockWise;
+    }
+
+    public void setClockWise(boolean mClockWise) {
+        this.mClockWise = mClockWise;
+    }
+
+    public int getBackgroundColor() {
+        return mBackgroundColor;
+    }
+
+    public void setBackgroundColor(int mBackgroundColor) {
+        this.mBackgroundColor = mBackgroundColor;
+    }
+
+    public boolean isHasBackground() {
+        return hasBackground;
+    }
+
+    public void setHasBackground(boolean hasBackground) {
+        this.hasBackground = hasBackground;
+    }
 }
+
