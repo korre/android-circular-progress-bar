@@ -1,14 +1,14 @@
 package se.kmdev.circularprogressbar;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     CircularProgressBar circularProgressBar1;
     CircularProgressBar circularProgressBar2;
@@ -21,14 +21,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        circularProgressBar1 = (CircularProgressBar) findViewById(R.id.circularProgress);
-        circularProgressBar2 = (CircularProgressBar) findViewById(R.id.circularProgress2);
-        circularProgressBar3 = (CircularProgressBar) findViewById(R.id.circularProgress3);
+        circularProgressBar1 = findViewById(R.id.circularProgress);
+        circularProgressBar2 = findViewById(R.id.circularProgress2);
+        circularProgressBar3 = findViewById(R.id.circularProgress3);
 
-        circularProgressBar1.setProgressColor(getResources().getColor(R.color.link_text_material_light));
+        circularProgressBar1.setProgressColor(getResources().getColor(R.color.highlighted_text_material_dark));
         circularProgressBar1.setProgressWidth(30);
 
-        circularProgressBar2.setProgressColor(getResources().getColor(R.color.link_text_material_dark));
+        circularProgressBar2.setProgressColor(getResources().getColor(R.color.highlighted_text_material_dark));
         circularProgressBar2.setProgressWidth(20);
         circularProgressBar2.setTextColor(getResources().getColor(R.color.button_material_dark));
         circularProgressBar2.useRoundedCorners(false);
@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
         circularProgressBar3.setProgressWidth(15);
         circularProgressBar3.showProgressText(false);
 
-        updateProgressButton= (Button) findViewById(R.id.updateProgressButton);
+        updateProgressButton= findViewById(R.id.updateProgressButton);
         updateProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
